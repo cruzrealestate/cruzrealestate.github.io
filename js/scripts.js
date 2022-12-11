@@ -7,25 +7,83 @@
 // Scripts
 // 
 
-window.addEventListener('DOMContentLoaded', event => {
-  function contactSubmit() {
-    // this is the id of the submit button
-    $("#submitButtonId").click(function () {
-
-      var url = "path/to/your/script.php"; // the script where you handle the form input.
-
-      $.ajax({
-        type: "POST",
-        url: url,
-        data: $("#idForm").serialize(), // serializes the form's elements.
-        success: function (data) {
-          alert(data); // show response from the php script.
-        }
-      });
-
-      return false; // avoid to execute the actual submit of the form.
-    });
+function Translate2() {
+  //initialization
+  this.init = function (attribute, lng) {
+    this.attribute = attribute;
+    this.lng = lng;
   }
+  //translate 
+  this.process = function () {
+    _self = this;
+    var xrhFile = new XMLHttpRequest();
+    //load content data 
+    xrhFile.open("GET", "lng/" + this.lng + ".json", false);
+    xrhFile.onreadystatechange = function () {
+      if (xrhFile.readyState === 4) {
+        if (xrhFile.status === 200 || xrhFile.status == 0) {
+          var LngObject = JSON.parse(xrhFile.responseText);
+          var allDom = document.getElementsByTagName("*");
+          for (var i = 0; i < allDom.length; i++) {
+            var elem = allDom[i];
+            var key = elem.getAttribute(_self.attribute);
+            if (key != null) {
+              elem.innerHTML = LngObject[key];
+            }
+          }
+
+        }
+      }
+    }
+    xrhFile.send();
+  }
+}
+
+function translate(lng, tagAttr) {
+  var translate = new Translate();
+  translate.init(tagAttr, lng);
+  translate.process();
+  if (lng == 'en') {
+    $("#enTranslator").css('color', '#f4623a');
+    $("#esTranslator").css('color', '#212529');
+  }
+  if (lng == 'es') {
+    $("#esTranslator").css('color', '#f4623a');
+    $("#enTranslator").css('color', '#212529');
+  }
+}
+
+function contactSubmit() {
+  // this is the id of the submit button
+  $("#submitButtonId").click(function () {
+
+    var url = "path/to/your/script.php"; // the script where you handle the form input.
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#idForm").serialize(), // serializes the form's elements.
+      success: function (data) {
+        alert(data); // show response from the php script.
+      }
+    });
+
+    return false; // avoid to execute the actual submit of the form.
+  });
+}
+
+$(document).ready(function () {
+  //This is id of HTML element (English) with attribute lng-tag
+  $("#enTranslator").click(function () {
+    translate('en', 'lng-tag');
+  });
+  //This is id of HTML element (Spanish) with attribute lng-tag
+  $("#khTranslator").click(function () {
+    translate('es', 'lng-tag');
+  });
+
+  //set spanish as main language
+  translate('es', 'lng-tag');
 
   // Navbar shrink function
   var navbarShrink = function () {
@@ -38,7 +96,6 @@ window.addEventListener('DOMContentLoaded', event => {
     } else {
       navbarCollapsible.classList.add('navbar-shrink')
     }
-
   };
 
   // Shrink the navbar 
@@ -73,5 +130,4 @@ window.addEventListener('DOMContentLoaded', event => {
   new SimpleLightbox({
     elements: '#portfolio a.portfolio-box'
   });
-
 });
