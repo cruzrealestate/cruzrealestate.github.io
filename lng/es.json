@@ -1,7 +1,15 @@
 {
-  "home":  "SpanHome",
-  "about": "SpanAbout",
-  "services": "SpanServices",
-  "portfolio": "SpanPortfolio",
-  "contact": "SpanContact"
+  "about_text": "Sería un honor asistirlo con sus necesidades inmobiliarias o cualquiera de los servicios adicionales que ofrecemos. Cruz Real Estate ha estado en el negocio por más de 20 años y esperamos reunirnos con usted para discutir cómo podemos ayudarlo",
+  "about_title": "Tenemos lo que necesitas!",
+  "button_contact": "¡Contáctenos!",
+  "button_services": "¡Más información!",
+  "contact_hours": "Horas",
+  "contact_text": "¡Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible!",
+  "contact_title": "¡Mantengámonos en contacto!",
+  "masthead_text": "Programe una cita sin compromiso hoy para analizar cómo podemos ayudarlo en cualquiera de sus necesidades de bienes raíces residenciales. Aunque nuestro enfoque principal son los bienes raíces, también ofrecemos otros servicios. Haga clic en el botón \"Más información\" para obtener más información",
+  "masthead_title": "Cruz Real Estate a su servicio",
+  "nav_about": "Sobre",
+  "nav_contact": "Contacto",
+  "nav_portfolio": "Casas en Venta",
+  "nav_services": "Servicios"
 }
