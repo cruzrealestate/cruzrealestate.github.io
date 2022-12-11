@@ -80,7 +80,7 @@ $(document).ready(function () {
     translate('en', 'lng-tag');
   });
   //This is id of HTML element (Spanish) with attribute lng-tag
-  $("#khTranslator").click(function () {
+  $("#esTranslator").click(function () {
     translate('es', 'lng-tag');
   });
 
