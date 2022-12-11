@@ -7,7 +7,7 @@
 // Scripts
 // 
 
-function Translate2() {
+function Translate() {
   //initialization
   this.init = function (attribute, lng) {
     this.attribute = attribute;
