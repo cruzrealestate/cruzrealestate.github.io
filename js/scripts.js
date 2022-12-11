@@ -6,6 +6,7 @@
 //
 // Scripts
 // 
+var debug;
 
 function Translate() {
   //initialization
@@ -23,6 +24,7 @@ function Translate() {
       if (xrhFile.readyState === 4) {
         if (xrhFile.status === 200 || xrhFile.status == 0) {
           var LngObject = JSON.parse(xrhFile.responseText);
+          debug = LngObject
           var allDom = document.getElementsByTagName("*");
           for (var i = 0; i < allDom.length; i++) {
             var elem = allDom[i];
