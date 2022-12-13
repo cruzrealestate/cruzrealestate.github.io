@@ -66,34 +66,13 @@ function contactSubmit() {
   if ($("#message").val().length == 0) { $("#message").addClass("is-invalid"); return; }
   else { $("#message").removeClass("is-invalid"); }
 
-  var payload = "<p>You got a new message. Details below</p>"
-  payload += "<p>Name: " + $("#name").val() + "</p>";
-  payload += "<p>Email: " + $("#email").val() + "</p>";
-  payload += "<p>Phone " + $("#phone").val() + "</p>";
-  payload += "<p>Message " + $("#message").val() + "/p>";
-
-  var payload2 = {
-    "Heading": "You got a new message. Details below", "Name": $("#name").val(), "Email": $("#email").val(), "Phone": $("#phone").val(), "Message": $("#message").val()
-  }
-
-  $.ajax({
-    url: "https://send.api.mailtrap.io/api/send",
-    method: "POST",
-    data: payload2,
-    headers: {
-      'Authorization': 'Bearer 8f47b2e3b327773f64d927b240d707eb',
-      'Content-Type': 'html',
-      'Access-Control-Allow-Origin': '*'
-    },
-    crossDomain: true
-    //dataType: 'json'
-  })
-    .done(function (msg) {
+  emailjs.sendForm('service_99rtb49', 'template_5ywa2ln', document.getElementById('contactForm'))
+    .then(function () {
+      console.log('SUCCESS!');
       $("#submitSuccessMessage").removeClass("d-none");
-    })
-    .fail(function (jqXHR, textStatus) {
+    }, function (error) {
+      console.log('FAILED...', error);
       $("#submitErrorMessage").removeClass("d-none");
-      console.log(JSON.stringify(jqXHR));
     });
 }
 
@@ -161,7 +140,7 @@ $(document).ready(function () {
     evt.preventDefault();
     contactSubmit();
   });
-
+  
   //init email service for contact form
   emailjs.init('N3bHuDe6WEAy8bYbM');
 });
