@@ -6,7 +6,6 @@
 //
 // Scripts
 // 
-var debug;
 
 function Translate() {
   //initialization
@@ -24,7 +23,6 @@ function Translate() {
       if (xrhFile.readyState === 4) {
         if (xrhFile.status === 200 || xrhFile.status == 0) {
           var LngObject = JSON.parse(xrhFile.responseText);
-          debug = LngObject
           var allDom = document.getElementsByTagName("*");
           for (var i = 0; i < allDom.length; i++) {
             var elem = allDom[i];
@@ -56,22 +54,28 @@ function translate(lng, tagAttr) {
 }
 
 function contactSubmit() {
-  // this is the id of the submit button
-  $("#submitButtonId").click(function () {
+  if ($("#name").val().length == 0) { $("#name").addClass("is-invalid"); return; }
+  else { $("#name").removeClass("is-invalid"); }
 
-    var url = "path/to/your/script.php"; // the script where you handle the form input.
+  if ($("#email").val().length == 0) { $("#email").addClass("is-invalid"); return; }
+  else { $("#email").removeClass("is-invalid"); }
 
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: $("#idForm").serialize(), // serializes the form's elements.
-      success: function (data) {
-        alert(data); // show response from the php script.
-      }
+  if ($("#phone").val().length == 0) { $("#phone").addClass("is-invalid"); return; }
+  else { $("#phone").removeClass("is-invalid"); }
+
+  if ($("#message").val().length == 0) { $("#message").addClass("is-invalid"); return; }
+  else { $("#message").removeClass("is-invalid"); }
+
+  emailjs.init('N3bHuDe6WEAy8bYbM');
+
+  emailjs.sendForm('service_99rtb49', 'template_5ywa2ln', document.getElementById('contactForm'))
+    .then(function () {
+      console.log('SUCCESS!');
+      $("#submitSuccessMessage").removeClass("d-none");
+    }, function (error) {
+      console.log('FAILED...', error);
+      $("#submitErrorMessage").removeClass("d-none");
     });
-
-    return false; // avoid to execute the actual submit of the form.
-  });
 }
 
 $(document).ready(function () {
@@ -131,5 +135,10 @@ $(document).ready(function () {
   // Activate SimpleLightbox plugin for portfolio items
   new SimpleLightbox({
     elements: '#portfolio a.portfolio-box'
+  });
+
+  $("#submitButton").on("click", function (evt) {
+    evt.preventDefault();
+    contactSubmit();
   });
 });
