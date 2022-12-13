@@ -85,8 +85,8 @@ function contactSubmit() {
       'Content-Type': 'html',
       'Access-Control-Allow-Origin': '*'
     },
-    crossDomain: true,
-    dataType: 'jsonp'
+    //crossDomain: true,
+    //dataType: 'json'
   })
     .done(function (msg) {
       $("#submitSuccessMessage").removeClass("d-none");
