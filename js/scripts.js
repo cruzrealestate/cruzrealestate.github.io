@@ -72,15 +72,21 @@ function contactSubmit() {
   payload += "<p>Phone " + $("#phone").val() + "</p>";
   payload += "<p>Message " + $("#message").val() + "/p>";
 
+  var payload2 = {
+    "Heading": "You got a new message. Details below", "Name": $("#name").val(), "Email": $("#email").val(), "Phone": $("#phone").val(), "Message": $("#message").val()
+  }
+
   $.ajax({
     url: "https://send.api.mailtrap.io/api/send",
     method: "POST",
-    data: payload,
+    data: payload2,
     headers: {
       'Authorization': 'Bearer 8f47b2e3b327773f64d927b240d707eb',
       'Content-Type': 'html',
-      'Access-Control-Allow-Origin': 'https://www.cruzcasasdelaware.com'
-    }
+      'Access-Control-Allow-Origin': '*'
+    },
+    crossDomain: true,
+    dataType: 'jsonp'
   })
     .done(function (msg) {
       $("#submitSuccessMessage").removeClass("d-none");
