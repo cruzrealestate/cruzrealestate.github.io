@@ -85,7 +85,7 @@ function contactSubmit() {
       'Content-Type': 'html',
       'Access-Control-Allow-Origin': '*'
     },
-    //crossDomain: true,
+    crossDomain: true
     //dataType: 'json'
   })
     .done(function (msg) {
