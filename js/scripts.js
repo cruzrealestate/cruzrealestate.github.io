@@ -1,6 +1,6 @@
 /*!
 * Start Bootstrap - Creative v7.0.6 (https://startbootstrap.com/theme/creative)
-* Copyright 2013-2022 Start Bootstrap
+* Copyright 2013-2022 Start Bootstrap.. Modified by LC 2022
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
 */
 //
@@ -65,8 +65,6 @@ function contactSubmit() {
 
   if ($("#message").val().length == 0) { $("#message").addClass("is-invalid"); return; }
   else { $("#message").removeClass("is-invalid"); }
-
-  emailjs.init('N3bHuDe6WEAy8bYbM');
 
   emailjs.sendForm('service_99rtb49', 'template_5ywa2ln', document.getElementById('contactForm'))
     .then(function () {
@@ -137,8 +135,12 @@ $(document).ready(function () {
     elements: '#portfolio a.portfolio-box'
   });
 
+  //add event for contact form submission
   $("#submitButton").on("click", function (evt) {
     evt.preventDefault();
     contactSubmit();
   });
+  
+  //init email service for contact form
+  emailjs.init('N3bHuDe6WEAy8bYbM');
 });
