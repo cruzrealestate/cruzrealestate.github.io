@@ -209,53 +209,46 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <!-- * * * * * * * * * * * * * * *-->
-          <!-- * * SB Forms Contact Form * *-->
-          <!-- * * * * * * * * * * * * * * *-->
-          <!-- This form is pre-integrated with SB Forms.-->
-          <!-- To make this form functional, sign up at-->
-          <!-- https://startbootstrap.com/solution/contact-forms-->
-          <!-- to get an API token!-->
           <form id="contactForm">
             <!--Name input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="name" name="from_name" type="text" placeholder="Enter your name..." />
-              <label for="name">Full name</label>
-              <div class="invalid-feedback">A name is required.</div>
+              <label for="name" lng-tag="contact_form_name">text</label>
+              <div class="invalid-feedback" lng-tag="contact_form_name_invalid">text</div>
             </div>
             <!--Email address input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="email" name="from_email" type="email" placeholder="name@example.com" />
-              <label for="email">Email address</label>
-              <div class="invalid-feedback">Email is not valid.</div>
+              <label for="email" lng-tag="contact_form_email">Email address</label>
+              <div class="invalid-feedback" lng-tag="contact_form_email_invalid">text</div>
             </div>
             <!--Phone number input-->
             <div class="form-floating mb-3">
               <input class="form-control" id="phone" name="from_phone" type="tel" placeholder="(123) 456-7890" />
-              <label for="phone">Phone number</label>
-              <div class="invalid-feedback">Phone is required</div>
+              <label for="phone" lng-tag="contact_form_phone">text</label>
+              <div class="invalid-feedback" lng-tag="contact_form_phone_invalid">text</div>
             </div>
             <!--Message input-->
             <div class="form-floating mb-3">
               <textarea class="form-control" id="message" name="from_message" type="text" placeholder="Enter your message here..." style="height: 10rem"></textarea>
-              <label for="message">Message</label>
-              <div class="invalid-feedback">A message is required.</div>
+              <label for="message" lng-tag="contact_form_message">text</label>
+              <div class="invalid-feedback" lng-tag="contact_form_message_invalid">text</div>
             </div>
             <!--Submit success message-->
             <!--This is what your users will see when the form
             has successfully submitted-->
             <div class="d-none" id="submitSuccessMessage">
               <div class="text-center mb-3">
-                <div class="fw-bolder">Form submission successful!</div>
+                <div class="fw-bolder" lng-tag="contact_form_submit_good">text</div>
               </div>
             </div>
             <!--Submit error message-->
             <!--This is what your users will see when there is
             an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+            <div class="d-none" id="submitErrorMessage" lng-tag="contact_form_submit_bad"><div class="text-center text-danger mb-3">text</div></div>
             <!--Submit Button-->
             <div class="d-grid">
-              <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Submit</button>
+              <button class="btn btn-primary btn-xl" id="submitButton" type="submit" lng-tag="button_submit">text</button>
             </div>
           </form>
         </div>
