@@ -80,7 +80,7 @@ function contactSubmit() {
       'Authorization': 'Bearer 8f47b2e3b327773f64d927b240d707eb',
       'Content-Type': 'html',
       'Access-Control-Allow-Origin': 'https://send.api.mailtrap.io'
-    }dataType: 'jsonp'
+    }
   })
     .done(function (msg) {
       $("#submitSuccessMessage").removeClass("d-none");
