@@ -79,7 +79,7 @@ function contactSubmit() {
     headers: {
       'Authorization': 'Bearer 8f47b2e3b327773f64d927b240d707eb',
       'Content-Type': 'html',
-      'Access-Control-Allow-Origin': 'https://send.api.mailtrap.io'
+      'Access-Control-Allow-Origin': 'https://www.cruzcasasdelaware.com'
     }
   })
     .done(function (msg) {
