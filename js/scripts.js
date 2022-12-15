@@ -69,6 +69,12 @@ function contactSubmit() {
   emailjs.sendForm(/*'service_99rtb49'*/'service_7av2auf', 'template_5ywa2ln', document.getElementById('contactForm'))
     .then(function () {
       console.log('SUCCESS!');
+      //Clear form values and hide
+      $("#name").val('');
+      $("#email").val('');
+      $("#phone").val('');
+      $("#message").val('');
+      $("#contactForm").hide();
       $("#submitSuccessMessage").removeClass("d-none");
     }, function (error) {
       console.log('FAILED...', error);
