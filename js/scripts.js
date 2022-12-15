@@ -66,7 +66,7 @@ function contactSubmit() {
   if ($("#message").val().length == 0) { $("#message").addClass("is-invalid"); return; }
   else { $("#message").removeClass("is-invalid"); }
 
-  emailjs.sendForm('service_99rtb49', 'template_5ywa2ln', document.getElementById('contactForm'))
+  emailjs.sendForm(/*'service_99rtb49'*/'service_7av2auf', 'template_5ywa2ln', document.getElementById('contactForm'))
     .then(function () {
       console.log('SUCCESS!');
       $("#submitSuccessMessage").removeClass("d-none");
@@ -74,6 +74,16 @@ function contactSubmit() {
       console.log('FAILED...', error);
       $("#submitErrorMessage").removeClass("d-none");
     });
+}
+
+var debug;
+
+function SimpleLightbox_Show(data) {
+  debug = data;
+
+  SimpleLightbox.open({
+    items: ['assets/img/portfolio/fullsize/1.jpg', 'assets/img/portfolio/fullsize/2.jpg', 'assets/img/portfolio/fullsize/3.jpg']
+  });
 }
 
 $(document).ready(function () {
@@ -143,4 +153,9 @@ $(document).ready(function () {
   
   //init email service for contact form
   emailjs.init('N3bHuDe6WEAy8bYbM');
+
+  //$(".portfolio-box").on("click", function (evt) {
+  //  SimpleLightbox_Show(evt);
+  //  return false;
+  //});
 });
