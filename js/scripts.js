@@ -74,7 +74,7 @@ function contactSubmit() {
       $("#email").val('');
       $("#phone").val('');
       $("#message").val('');
-      $("#contactForm").hide();
+     // $("#contactForm").hide();
       $("#submitSuccessMessage").removeClass("d-none");
     }, function (error) {
       console.log('FAILED...', error);
