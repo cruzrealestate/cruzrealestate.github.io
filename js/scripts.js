@@ -57,11 +57,11 @@ function contactSubmit() {
   if ($("#name").val().length == 0) { $("#name").addClass("is-invalid"); return; }
   else { $("#name").removeClass("is-invalid"); }
 
-  if (!ValidEmail($("#email").val())) { $("#email").addClass("is-invalid"); $("#phone").addClass("is-invalid"); return; }
-  else { $("#email").removeClass("is-invalid"); $("#phone").removeClass("is-invalid"); }
+  if (!ValidEmail($("#email").val())) { $("#email").addClass("is-invalid"); return; }
+  else { $("#email").removeClass("is-invalid"); }
 
-  if (!ValidPhone($("#phone").val())) { $("#email").addClass("is-invalid"); $("#phone").addClass("is-invalid"); return; }
-  else { $("#email").removeClass("is-invalid"); $("#phone").removeClass("is-invalid"); }
+  if (!ValidPhone($("#phone").val())) { $("#phone").addClass("is-invalid"); return; }
+  else { $("#phone").removeClass("is-invalid"); }
 
   if ($("#message").val().length < 5) { $("#message").addClass("is-invalid"); return; }
   else { $("#message").removeClass("is-invalid"); }
