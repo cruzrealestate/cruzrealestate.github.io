@@ -57,19 +57,19 @@ function contactSubmit() {
   if ($("#name").val().length == 0) { $("#name").addClass("is-invalid"); return; }
   else { $("#name").removeClass("is-invalid"); }
 
-  if ($("#email").val().length == 0) { $("#email").addClass("is-invalid"); return; }
-  else { $("#email").removeClass("is-invalid"); }
+  if (!ValidEmail($("#email").val())) { $("#email").addClass("is-invalid"); $("#phone").addClass("is-invalid"); return; }
+  else { $("#email").removeClass("is-invalid"); $("#phone").removeClass("is-invalid"); }
 
-  if ($("#phone").val().length == 0) { $("#phone").addClass("is-invalid"); return; }
-  else { $("#phone").removeClass("is-invalid"); }
+  if (!ValidPhone($("#phone").val())) { $("#email").addClass("is-invalid"); $("#phone").addClass("is-invalid"); return; }
+  else { $("#email").removeClass("is-invalid"); $("#phone").removeClass("is-invalid"); }
 
-  if ($("#message").val().length == 0) { $("#message").addClass("is-invalid"); return; }
+  if ($("#message").val().length < 5) { $("#message").addClass("is-invalid"); return; }
   else { $("#message").removeClass("is-invalid"); }
 
-  emailjs.sendForm(/*'service_99rtb49'*/'service_7av2auf', 'template_5ywa2ln', document.getElementById('contactForm'))
+  emailjs.sendForm('service_7av2auf', 'template_5ywa2ln', document.getElementById('contactForm'))
     .then(function () {
       console.log('SUCCESS!');
-      //Clear form values and hide
+      //Clear form values
       $("#name").val('');
       $("#email").val('');
       $("#phone").val('');
@@ -90,6 +90,17 @@ function SimpleLightbox_Show(data) {
   SimpleLightbox.open({
     items: ['assets/img/portfolio/fullsize/1.jpg', 'assets/img/portfolio/fullsize/2.jpg', 'assets/img/portfolio/fullsize/3.jpg']
   });
+}
+
+function ValidEmail(mail) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) { return (true) }
+  else { return (false) }
+}
+
+function ValidPhone(phone) {
+  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if (phone.match(phoneno)) { return true; }
+  else { return false; }
 }
 
 $(document).ready(function () {
