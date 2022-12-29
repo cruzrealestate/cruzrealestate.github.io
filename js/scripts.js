@@ -6,31 +6,6 @@
 //
 // Scripts
 // 
-var debug;
-
-var json = {
-  "fullsize": [
-    "1.jpg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg",
-    "5.jpg",
-    "6.jpg",
-    "7.jpg",
-    "8.jpg",
-    "9.jpg",
-    "10.jpg",
-    "11.jpg",
-    "12.jpg",
-    "13.jpg",
-    "14.jpg",
-    "15.jpg",
-    "16.jpg",
-    "17.jpg",
-    "18.jpg",
-    "19.jpg"
-  ]
-};
 
 function Translate() {
   //initialization
@@ -109,18 +84,17 @@ function contactSubmit() {
 
 function SimpleLightbox_Show(data) {
   var rootFolder = data.currentTarget.attributes.rootfolder.nodeValue;
-  var picItems = new Array();
 
   $.ajax({
     url: 'assets/img/portfolio/' + rootFolder + '/source.json',
   }).done(function (data) {
-    debug = data;
+    var picItems = new Array();
+
+    $(data.fullsize).each(function (_idx, val) { picItems.push('assets/img/portfolio/' + data.basepath + '/fullsize/' + val); });
+
+    //items: ['assets/img/portfolio/fullsize/1.jpg', 'assets/img/portfolio/fullsize/2.jpg', 'assets/img/portfolio/fullsize/3.jpg']
+    SimpleLightbox.open({ items: picItems });
   });
-
-  $(json.fullsize).each(function (_idx, val) { picItems.push('assets/img/portfolio/' + rootFolder + '/fullsize/' + val); });
-
-  //items: ['assets/img/portfolio/fullsize/1.jpg', 'assets/img/portfolio/fullsize/2.jpg', 'assets/img/portfolio/fullsize/3.jpg']
-  SimpleLightbox.open({ items: picItems });
 }
 
 function ValidEmail(mail) {
