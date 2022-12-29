@@ -6,6 +6,31 @@
 //
 // Scripts
 // 
+var debug;
+
+var json = {
+  "fullsize": [
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+    "7.jpg",
+    "8.jpg",
+    "9.jpg",
+    "10.jpg",
+    "11.jpg",
+    "12.jpg",
+    "13.jpg",
+    "14.jpg",
+    "15.jpg",
+    "16.jpg",
+    "17.jpg",
+    "18.jpg",
+    "19.jpg"
+  ]
+};
 
 function Translate() {
   //initialization
@@ -82,14 +107,20 @@ function contactSubmit() {
     });
 }
 
-var debug;
-
 function SimpleLightbox_Show(data) {
-  debug = data;
+  var rootFolder = data.currentTarget.attributes.rootfolder.nodeValue;
+  var picItems = new Array();
 
-  SimpleLightbox.open({
-    items: ['assets/img/portfolio/fullsize/1.jpg', 'assets/img/portfolio/fullsize/2.jpg', 'assets/img/portfolio/fullsize/3.jpg']
+  $.ajax({
+    url: 'assets/img/portfolio/' + rootFolder + '/source.json',
+  }).done(function (data) {
+    debug = data;
   });
+
+  $(json.fullsize).each(function (_idx, val) { picItems.push('assets/img/portfolio/' + rootFolder + '/fullsize/' + val); });
+
+  //items: ['assets/img/portfolio/fullsize/1.jpg', 'assets/img/portfolio/fullsize/2.jpg', 'assets/img/portfolio/fullsize/3.jpg']
+  SimpleLightbox.open({ items: picItems });
 }
 
 function ValidEmail(mail) {
@@ -158,9 +189,9 @@ $(document).ready(function () {
   });
 
   // Activate SimpleLightbox plugin for portfolio items
-  new SimpleLightbox({
-    elements: '#portfolio a.portfolio-box'
-  });
+  //new SimpleLightbox({
+  //  elements: '#portfolio a.portfolio-box'
+  //});
 
   //add event for contact form submission
   $("#submitButton").on("click", function (evt) {
@@ -171,8 +202,8 @@ $(document).ready(function () {
   //init email service for contact form
   emailjs.init('N3bHuDe6WEAy8bYbM');
 
-  //$(".portfolio-box").on("click", function (evt) {
-  //  SimpleLightbox_Show(evt);
-  //  return false;
-  //});
+  $(".portfolio-box").on("click", function (evt) {
+    SimpleLightbox_Show(evt);
+    return false;
+  });
 });
